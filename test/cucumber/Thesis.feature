@@ -50,6 +50,20 @@ Feature: Thesis Tests
     When I click in order thesis by date
     Then the returned thesis list has the same items but it is sorted by date
 
+    #if($Thesis Tests)
+      Scenario: order thesis list by name
+        Given at least one thesis is stored in the system
+        And I am at the thesis list page
+        When I click in order thesis by name
+        Then the returned thesis list has the same items but it is sorted by name
+
+    Scenario: order thesis list by author
+      Given at least one thesis is stored in the system
+      And I am at the thesis list page
+      When I click in order thesis by author
+      Then the returned thesis list has the same items but it is sorted by author
+    #end
+
   Scenario: search an existing thesis
     Given the system has one thesis entitled "Software Engineering" with author name "Pressman", year of publication "1998" and university "UFPE"
     And I am at the thesis search page
