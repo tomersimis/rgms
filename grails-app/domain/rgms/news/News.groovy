@@ -14,7 +14,7 @@ class News {
         date(blank: false)
         researchGroup nullable: false
     }
-
+//penis
 
     static List getCurrentNews(researchGroup) {
         def list
