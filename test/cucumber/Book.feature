@@ -35,3 +35,10 @@ Feature: Book
     When I go to new book page
     And I use the webpage to create the book "Next Generation Software Product Line Engineering" with file name "Ngs.pdf"
     Then the book "Next Generation Software Product Line Engineering" was stored by the system
+
+  Scenario: list existing books ordered by volume in ascending order
+    Given I am at the books page
+    And the system has some books created
+    When I select to view the list of books
+    And I select to order the list of books by "volume"
+    Then my book list shows the books ordered by "volume"
