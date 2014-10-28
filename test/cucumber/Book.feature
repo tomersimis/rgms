@@ -35,6 +35,25 @@ Feature: Book
     When I go to new book page
     And I use the webpage to create the book "Next Generation Software Product Line Engineering" with file name "Ngs.pdf"
     Then the book "Next Generation Software Product Line Engineering" was stored by the system
+  
+  Scenario: list existing books ordered by publication date
+    Given I am at the books page 
+    And the system has some books created
+    When I select to view the list of books 
+    And I select to order the list of books by "publication date"
+    Then my book list shows the books ordered by "publication date"
+
+  Scenario: download book file
+    Given I am at the books page
+    And the system has a book with file named "NGSPL-0.pdf"
+    When I select the download button
+    Then I can download the file named "NGSPL-0.pdf"
+
+Scenario: new book web
+    Given I am at the publications menu
+    When I select the "Book" option at the publications menu
+    And I select the new book option at the book page
+    Then I can fill the book details
 
   Scenario: list existing books ordered by volume in ascending order
     Given I am at the books page
