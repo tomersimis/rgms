@@ -226,9 +226,7 @@ And(~'^the news "([^"]*)" is stored in the system$') { String description ->
     assert NewsTestDataAndOperations.checkExistingNewsByDescription(description)
 }
 
-And(~'^the system has some news created$') { ->
-    assert News.count() > 0
-}
+
 
 When(~'^I select to view the news "([^"]*)" in resulting list$') { String title ->
     page.selectViewNew(title)
@@ -260,13 +258,24 @@ And(~'^I create a research group because it is necessary$') {->
 }
 
 
+And(~'^the system has some news created$') { ->
+    assert News.count() > 0
+}
+
+When(~"^I select to view the list of news\$") {->
+    news = News.findAll()
+    assert news != null
+}
 
 And(~'^I select the "([^"]*)" option at the program menu$') { String option ->
     page.select(option)
 }
 
 
+
 Then(~'^the system orders the news list by date$') {->
     newsSorted = News.listOrderByDate(order: "asc")
     assert NewsTestDataAndOperations.isSorted(newsSorted, "date")
 }
+
+
