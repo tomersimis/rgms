@@ -211,6 +211,9 @@ Then(~'^the news "([^"]*)", date "([^"]*)" and "([^"]*)" research group is prope
 }
 
 
+
+
+
 Given(~'^I select the news page$') { ->
     page.select("News")
 }
@@ -221,6 +224,10 @@ And(~'^the news "([^"]*)" is stored in the system$') { String description ->
     page.fillNewDetails(description)
     page.clickOnCreate()
     assert NewsTestDataAndOperations.checkExistingNewsByDescription(description)
+}
+
+And(~'^the system has some news created$') { ->
+    assert News.count() > 0
 }
 
 When(~'^I select to view the news "([^"]*)" in resulting list$') { String title ->
@@ -250,4 +257,16 @@ And(~'^I create a research group because it is necessary$') {->
     assert researchGroup != null
     to PublicationsPage
     at PublicationsPage
+}
+
+
+
+And(~'^I select the "([^"]*)" option at the program menu$') { String option ->
+    page.select(option)
+}
+
+
+Then(~'^the system orders the news list by date$') {->
+    newsSorted = News.listOrderByDate(order: "asc")
+    assert NewsTestDataAndOperations.isSorted(newsSorted, "date")
 }
